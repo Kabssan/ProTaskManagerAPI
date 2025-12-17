@@ -1,0 +1,23 @@
+# Build-Ordner (Enthalten den kompilierten Code)
+bin/
+obj/
+
+# Visual Studio / VS Code spezifische Dateien
+.vscode/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Betriebssystem-Dateien
+.DS_Store
+Thumbs.db
+
+# Lokale Datenbanken (SQLite)
+*.db
+*.db-shm
+*.db-wal
+
+# Veröffentlichte Dateien
+publish/
