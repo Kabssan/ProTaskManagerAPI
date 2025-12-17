@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ProTaskManagerAPI.Data;
+using ProTaskManagerAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -60,6 +61,35 @@ app.MapPost("/api/tasks", async (ProTaskManagerAPI.Models.TodoTask task, ProTask
     db.Tasks.Add(task);
     await db.SaveChangesAsync();
     return Results.Created($"/api/tasks/{task.Id}", task);
+});
+
+// UPDATE: Eine bestehende Aufgabe ändern
+app.MapPut("/api/tasks/{id}", async (int id, TodoTask updatedTask, AppDbContext db) =>
+{
+    var task = await db.Tasks.FindAsync(id);
+
+    if (task is null) return Results.NotFound();
+
+    // Felder aktualisieren
+    task.Title = updatedTask.Title;
+    task.Description = updatedTask.Description;
+    task.IsCompleted = updatedTask.IsCompleted;
+
+    await db.SaveChangesAsync();
+    return Results.NoContent();
+});
+
+// DELETE: Eine Aufgabe anhand ihrer ID löschen
+app.MapDelete("/api/tasks/{id}", async (int id, AppDbContext db) =>
+{
+    var task = await db.Tasks.FindAsync(id);
+    
+    if (task is null) return Results.NotFound();
+
+    db.Tasks.Remove(task);
+    await db.SaveChangesAsync();
+    
+    return Results.NoContent(); // 204 No Content ist die Standard-Antwort für erfolgreiches Löschen
 });
 
 app.Run();

@@ -1,8 +1,2 @@
-POST http://localhost:5265/api/tasks
-Content-Type: application/json
-
-{
-  "title": "Aufgabe aus VS Code",
-  "description": "Das ist viel einfacher als curl",
-  "isCompleted": false
-}
+### Aufgabe löschen
+DELETE http://localhost:5265/api/tasks/1
