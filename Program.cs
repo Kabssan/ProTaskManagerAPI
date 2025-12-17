@@ -1,10 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using ProTaskManagerAPI.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// ...
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite("Data Source=tasks.db"));
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -42,6 +52,14 @@ app.MapGet("/api/tasks", () =>
     };
 
     return Results.Ok(testTasks);
+});
+
+// Diese Funktion erlaubt es uns, neue Aufgaben in die Datenbank zu schreiben
+app.MapPost("/api/tasks", async (ProTaskManagerAPI.Models.TodoTask task, ProTaskManagerAPI.Data.AppDbContext db) =>
+{
+    db.Tasks.Add(task);
+    await db.SaveChangesAsync();
+    return Results.Created($"/api/tasks/{task.Id}", task);
 });
 
 app.Run();
