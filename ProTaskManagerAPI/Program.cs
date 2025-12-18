@@ -32,5 +32,12 @@ app.UseCors("AllowAll");
 
 app.MapTaskEndpoints();
 
+// Automatische Migration beim Start
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
+
 app.Run();
 
