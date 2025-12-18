@@ -1,2 +1,9 @@
-### Aufgabe löschen
-DELETE http://localhost:5265/api/tasks/1
+
+POST http://localhost:5265/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Einkaufen gehen",
+  "description": "Eier, Mehl, Milch",
+  "isCompleted": false
+}

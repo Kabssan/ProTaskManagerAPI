@@ -44,20 +44,31 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast");
 
-app.MapGet("/api/tasks", () =>
+app.MapGet("/api/tasks", async (string? search, AppDbContext db) =>
 {
-    var testTasks = new List<ProTaskManagerAPI.Models.TodoTask>
-    {
-        new ProTaskManagerAPI.Models.TodoTask { Id = 1, Title = "Minimal API lernen", IsCompleted = true },
-        new ProTaskManagerAPI.Models.TodoTask { Id = 2, Title = "Projekt erfolgreich starten", IsCompleted = false }
-    };
+    // Starten mit der Basis-Abfrage (alle Aufgaben)
+    var query = db.Tasks.AsQueryable();
 
-    return Results.Ok(testTasks);
+    // Wenn der User einen Suchbegriff eingegeben hat:
+    if (!string.IsNullOrWhiteSpace(search))
+    {
+        // Filtern: Der Titel muss den Suchbegriff enthalten
+        query = query.Where(t => t.Title.ToLower().Contains(search.ToLower()));
+    }
+
+    // Am Ende wird die gefilterte (oder ungefilterte) Abfrage ausgeführt
+    return Results.Ok(await query.ToListAsync());
 });
 
 // Diese Funktion erlaubt es uns, neue Aufgaben in die Datenbank zu schreiben
 app.MapPost("/api/tasks", async (ProTaskManagerAPI.Models.TodoTask task, ProTaskManagerAPI.Data.AppDbContext db) =>
 {
+    // Check: Ist der Titel leer oder nur Leerzeichen?
+    if (string.IsNullOrWhiteSpace(task.Title))
+    {
+        return Results.BadRequest("Der Titel darf nicht leer sein!");
+    }
+
     db.Tasks.Add(task);
     await db.SaveChangesAsync();
     return Results.Created($"/api/tasks/{task.Id}", task);
