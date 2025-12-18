@@ -3,7 +3,7 @@ POST http://localhost:5265/api/tasks
 Content-Type: application/json
 
 {
-  "title": "Einkaufen gehen",
-  "description": "Eier, Mehl, Milch",
+  "title": "Backflip",
+  "description": "Salto machen",
   "isCompleted": false
 }
