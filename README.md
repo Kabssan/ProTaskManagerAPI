@@ -1,28 +1,21 @@
-# ProTaskManagerAPI
+# 📝 ProTaskManagerAPI
 
-Ein modernes Backend-Projekt zur Aufgabenverwaltung, entwickelt mit **.NET 10**. Dieses Projekt dient als Nachweis meiner praktischen Fähigkeiten in der Softwareentwicklung nach meinem Bachelor-Abschluss.
+Ein modernes Backend-Projekt zur Aufgabenverwaltung, entwickelt mit **.NET 10**. Dieses Projekt demonstriert die Implementierung einer skalierbaren Architektur und moderner API-Standards.
 
-##  Features
-- **RESTful API**: Endpunkte zur Verwaltung von Aufgaben (Tasks).
-- **Minimal APIs**: Nutzung des neuesten .NET 10 Standards für effizientes Routing.
-- **Datenmodellierung**: Saubere Trennung von Logik und Datenstrukturen.
+## 🚀 Features
+- **Full CRUD**: Erstellen, Lesen, Aktualisieren und Löschen von Aufgaben.
+- **Dynamic Search**: Integrierte Suchfunktion über Query-Parameter (`?search=...`).
+- **Clean Architecture**: Auslagerung der Endpunkte in separate Module zur besseren Wartbarkeit.
+- **Data Persistence**: Persistente Speicherung der Aufgaben in einer SQLite-Datenbank.
 
-##  Tech-Stack
-- **Sprache:** C#
-- **Framework:** .NET 10 (ASP.NET Core)
-- **Editor:** Visual Studio Code
-- **Datenbank:** SQLite (geplant/in Arbeit)
+## 🛠 Tech-Stack
+- **Framework:** .NET 10 (ASP.NET Core Minimal APIs)
+- **ORM:** Entity Framework Core
+- **Datenbank:** SQLite
+- **Tools:** VS Code, REST Client, Git
 
-##  Installation & Start
-Um das Projekt lokal auszuführen, folge diesen Schritten:
-
+## ⚙️ Installation & Start
 1. Repository klonen:
    ```bash
    git clone [https://github.com/DEIN_USERNAME/ProTaskManagerAPI.git](https://github.com/DEIN_USERNAME/ProTaskManagerAPI.git)
-
-cd ProTaskManagerAPI
-
-Projekt starten:
-
-dotnet run
-Die API ist dann unter http://localhost:XXXX/api/tasks erreichbar 
+   cd ProTaskManagerAPI
