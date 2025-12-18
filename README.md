@@ -1,21 +1,24 @@
-# 📝 ProTaskManagerAPI
+# 🚀 ProTaskManager - Fullstack .NET 9 & JavaScript App
 
-Ein modernes Backend-Projekt zur Aufgabenverwaltung, entwickelt mit **.NET 10**. Dieses Projekt demonstriert die Implementierung einer skalierbaren Architektur und moderner API-Standards.
+Ein moderner Task-Manager, der zeigt, wie man eine performante REST-API mit einem sauberen Frontend verbindet.
 
-## 🚀 Features
-- **Full CRUD**: Erstellen, Lesen, Aktualisieren und Löschen von Aufgaben.
-- **Dynamic Search**: Integrierte Suchfunktion über Query-Parameter (`?search=...`).
-- **Clean Architecture**: Auslagerung der Endpunkte in separate Module zur besseren Wartbarkeit.
-- **Data Persistence**: Persistente Speicherung der Aufgaben in einer SQLite-Datenbank.
+## 🔗 Live-Links
+- **Live Demo (Frontend):**  https://kabssan.github.io/ProTaskManagerAPI/
+- **API Endpunkt (Backend):** https://protaskmanagerapi.onrender.com/api/tasks
 
-## 🛠 Tech-Stack
-- **Framework:** .NET 10 (ASP.NET Core Minimal APIs)
-- **ORM:** Entity Framework Core
-- **Datenbank:** SQLite
-- **Tools:** VS Code, REST Client, Git
+## 🛠 Tech Stack
+- **Backend:** C# | .NET 9 | ASP.NET Core Minimal APIs
+- **Datenbank:** SQLite | Entity Framework Core
+- **Frontend:** HTML5 | CSS3 (Modern UI) | Vanilla JavaScript (Async/Await)
+- **Deployment:** Render (Backend/Docker) | GitHub Pages (Frontend)
 
-## ⚙️ Installation & Start
+## ✨ Features
+- **Vollständiges CRUD:** Erstellen, Lesen, Aktualisieren (Status) und Löschen von Aufgaben.
+- **Asynchrone Kommunikation:** Nahtloser Datenaustausch zwischen Frontend und Backend via Fetch API.
+- **Responsive Design:** Die App funktioniert auf Desktop und Mobilgeräten.
+- **Datenbank-Migrationen:** Automatisches Schema-Management beim App-Start.
+
+## 🚀 Installation & Lokale Entwicklung
 1. Repository klonen:
    ```bash
-   git clone [https://github.com/DEIN_USERNAME/ProTaskManagerAPI.git](https://github.com/DEIN_USERNAME/ProTaskManagerAPI.git)
-   cd ProTaskManagerAPI
+   git clone [https://github.com/Kabssan/ProTaskManagerAPI.git]

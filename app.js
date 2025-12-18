@@ -1,10 +1,14 @@
 const BASE_URL = window.location.hostname === 'localhost' 
     ? 'http://localhost:5265' 
-    : 'https://deine-render-url.onrender.com'; 
+    : 'https://protaskmanagerapi.onrender.com'; 
 
 const API_URL = `${BASE_URL}/api/tasks`;
 
 async function loadTasks() {
+
+    const loader = document.getElementById('loader'); 
+    loader.style.display = 'block';
+
     try {
         const response = await fetch(API_URL);
         const tasks = await response.json();
@@ -33,6 +37,8 @@ async function loadTasks() {
         });
     } catch (error) {
         console.error('Fehler:', error);
+    } finally {
+        loader.style.display = 'none';              
     }
 }
 

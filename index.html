@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -84,6 +85,29 @@
         }
 
         .delete-btn:hover { background: var(--danger); color: white; }
+
+        /* Loader Styles */
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: var(--primary);
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #loader {
+            text-align: center;
+            margin: 20px 0;
+            color: var(--dark);
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body>
@@ -94,6 +118,11 @@
             <input type="text" id="taskTitle" placeholder="Was ist zu tun?">
             <input type="text" id="taskDesc" placeholder="Beschreibung (optional)">
             <button class="add-btn" onclick="addTask()">Aufgabe hinzufügen</button>
+        </div>
+
+        <div id="loader" style="display: none; text-align: center; margin: 20px;">
+            <div class="spinner"></div>
+            <p>Server wacht gerade auf... (kann bis zu 30s dauern)</p>
         </div>
 
         <ul id="taskList"></ul>
