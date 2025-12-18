@@ -1,4 +1,8 @@
-const API_URL = 'http://localhost:5265/api/tasks';
+const BASE_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:5265' 
+    : 'https://deine-render-url.onrender.com'; 
+
+const API_URL = `${BASE_URL}/api/tasks`;
 
 async function loadTasks() {
     try {
