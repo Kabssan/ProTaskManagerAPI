@@ -21,3 +21,8 @@ Thumbs.db
 
 # Veröffentlichte Dateien
 publish/
+
+# Konfigurationsdateien mit Geheimnissen
+appsettings.json
+appsettings.Development.json
+dotnet-tools.json
