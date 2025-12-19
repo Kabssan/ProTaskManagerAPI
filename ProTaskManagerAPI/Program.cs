@@ -39,21 +39,7 @@ using (var scope = app.Services.CreateScope())
     db.Database.Migrate();
 }
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    try
-    {
-        var context = services.GetRequiredService<AppDbContext>();
-        // EnsureCreated ist oft stabiler für den ersten Start bei Neon
-        context.Database.EnsureCreated();
-    }
-    catch (Exception ex)
-    {
-        var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "Ein Fehler trat beim Erstellen der Datenbank auf.");
-    }
-}
+
 
 app.Run();
 
