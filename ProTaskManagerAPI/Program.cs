@@ -41,9 +41,18 @@ using (var scope = app.Services.CreateScope())
 
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    // Das hier erstellt die Tabellen bei Neon automatisch, falls sie fehlen!
-    db.Database.EnsureCreated(); 
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<AppDbContext>();
+        // EnsureCreated ist oft stabiler für den ersten Start bei Neon
+        context.Database.EnsureCreated();
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "Ein Fehler trat beim Erstellen der Datenbank auf.");
+    }
 }
 
 app.Run();
