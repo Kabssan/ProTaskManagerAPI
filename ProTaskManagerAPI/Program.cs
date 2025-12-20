@@ -24,10 +24,12 @@ var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(options =>
 {
-    app.MapOpenApi();
-}
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    options.RoutePrefix = string.Empty; // Swagger erscheint direkt beim Aufruf der URL
+});
 
 //app.UseHttpsRedirection();
 app.UseCors("AllowAll");
