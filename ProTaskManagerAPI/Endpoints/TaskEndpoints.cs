@@ -47,6 +47,8 @@ public static class TaskEndpoints
             task.Description = updatedTask.Description;
             task.IsCompleted = updatedTask.IsCompleted;
 
+            task.UpdatedAt = DateTime.UtcNow;
+
             await db.SaveChangesAsync();
             return Results.NoContent();
         });
