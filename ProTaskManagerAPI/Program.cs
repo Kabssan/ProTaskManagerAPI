@@ -33,6 +33,8 @@ app.UseSwaggerUI(options =>
 //app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 
+app.UseHttpsRedirection();
+
 app.MapTaskEndpoints();
 
 
