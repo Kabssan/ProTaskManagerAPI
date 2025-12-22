@@ -6,9 +6,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddCors(options => {
-    options.AddPolicy("AllowAll", policy => {
-        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.SetIsOriginAllowed(_ => true) 
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials(); 
     });
 });
 
@@ -30,7 +35,7 @@ app.UseSwaggerUI(options =>
     options.RoutePrefix = string.Empty; // Swagger erscheint direkt beim Aufruf der URL
 });
 
-//app.UseHttpsRedirection();
+
 app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
