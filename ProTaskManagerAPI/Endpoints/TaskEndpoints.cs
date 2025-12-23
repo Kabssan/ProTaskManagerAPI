@@ -32,6 +32,9 @@ public static class TaskEndpoints
                 return Results.BadRequest("Der Titel darf nicht leer sein.");
             }
 
+            task.CreatedAt = DateTime.UtcNow;
+            task.UpdatedAt = DateTime.UtcNow;
+
             db.Tasks.Add(task);
             await db.SaveChangesAsync();
             return Results.Created($"/api/tasks/{task.Id}", task);
