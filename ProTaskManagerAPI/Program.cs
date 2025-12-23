@@ -22,20 +22,16 @@ var app = builder.Build();
 
 app.Use(async (context, next) =>
 {
-    // Erlaubt deinem Localhost den Zugriff
-    context.Response.Headers.Append("Access-Control-Allow-Origin", "http://localhost:5173");
-    context.Response.Headers.Append("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    context.Response.Headers.Append("Access-Control-Allow-Headers", "Content-Type, Accept, Authorization");
-    context.Response.Headers.Append("Access-Control-Allow-Credentials", "true");
+    context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+    context.Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    context.Response.Headers.Add("Access-Control-Allow-Headers", "*");
 
-    // WICHTIG: Beantwortet die "Vorab-Anfrage" (OPTIONS) des Browsers sofort
     if (context.Request.Method == "OPTIONS")
     {
         context.Response.StatusCode = 200;
         await context.Response.CompleteAsync();
         return;
     }
-
     await next();
 });
 
