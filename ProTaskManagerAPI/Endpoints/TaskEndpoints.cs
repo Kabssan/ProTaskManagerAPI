@@ -32,6 +32,8 @@ public static class TaskEndpoints
                 return Results.BadRequest("Der Titel darf nicht leer sein.");
             }
 
+            task.Id = 0;
+
             task.CreatedAt = DateTime.UtcNow;
             task.UpdatedAt = DateTime.UtcNow;
 
